@@ -1,43 +1,185 @@
+:root {
+  --primary-color: #000000;
+  --secondary-color: #333333;
+  --background-color: #ffffff;
+  --input-background: #f5f5f5;
+  --input-border: #dddddd;
+  --error-color: #e53935;
+  --success-color: #424242;
+  --border-radius: 8px;
+  --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
 .auth-container {
   max-width: 400px;
+  width: 90%;
   margin: 60px auto;
   padding: 30px;
-  border-radius: 10px;
-  background: #ffffff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: var(--border-radius);
+  background: var(--background-color);
+  box-shadow: var(--box-shadow);
   text-align: center;
+}
+
+h2 {
+  margin-bottom: 25px;
+  color: var(--primary-color);
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .form-group {
   margin-bottom: 20px;
+  position: relative;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 input {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 14px 16px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius);
   font-size: 16px;
+  background-color: var(--input-background);
+  transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
+input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.password-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fixed button styles to ensure visibility */
 button {
   width: 100%;
-  padding: 12px;
-  background: #28a745;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
+  padding: 14px;
+  background-color: #000000 !important; /* Force black background */
+  border: 2px solid #000000;
+  border-radius: var(--border-radius);
+  color: #ffffff !important; /* Force white text */
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color var(--transition-speed) ease, transform 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button:hover {
-  background: #218838;
+  background-color: rgb(58, 58, 58);
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  background-color: #cccccc !important;
+  border-color: #cccccc;
+  color: #666666 !important;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-register {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 .message {
-  margin-top: 15px;
-  color: red;
-  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.error {
+  background-color: rgba(229, 57, 53, 0.1);
+  color: var(--error-color);
+}
+
+.success {
+  background-color: rgba(66, 66, 66, 0.1);
+  color: var(--success-color);
+}
+
+.switch-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--secondary-color);
+}
+
+.switch-link a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-speed) ease;
+}
+
+.switch-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+  .auth-container {
+    width: 95%;
+    padding: 20px;
+    margin: 40px auto;
+  }
+  
+  input {
+    padding: 12px 14px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
 }

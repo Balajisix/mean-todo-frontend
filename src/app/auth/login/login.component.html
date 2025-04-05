@@ -1,25 +1,76 @@
 <div class="auth-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-    <div class="form-group">
-      <input
-        type="email"
-        name="email"
-        [(ngModel)]="email"
-        placeholder="Email"
-        required
-      />
+  <div class="auth-card">
+    <div class="auth-header">
+      <h2 class="auth-title">Welcome Back</h2>
+      <p class="auth-subtitle">Login to access your account</p>
     </div>
-    <div class="form-group">
-      <input
-        type="password"
-        name="password"
-        [(ngModel)]="password"
-        placeholder="Password"
-        required
-      />
+    
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="auth-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-container">
+          <i class="material-icons input-icon">email</i>
+          <input 
+            type="email" 
+            id="email"
+            name="email" 
+            [(ngModel)]="email" 
+            placeholder="Enter your email" 
+            required 
+            #emailInput="ngModel"
+            [class.input-error]="emailInput.invalid && emailInput.touched"
+          />
+        </div>
+        <div class="error-message" *ngIf="emailInput.invalid && emailInput.touched">
+          Please enter a valid email address
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-container">
+          <i class="material-icons input-icon">lock</i>
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            id="password"
+            name="password" 
+            [(ngModel)]="password" 
+            placeholder="Enter your password" 
+            required 
+            #passwordInput="ngModel"
+            [class.input-error]="passwordInput.invalid && passwordInput.touched"
+          />
+          <i 
+            class="material-icons visibility-icon" 
+            (click)="togglePasswordVisibility()"
+          >
+            {{ showPassword ? 'visibility_off' : 'visibility' }}
+          </i>
+        </div>
+        <div class="error-message" *ngIf="passwordInput.invalid && passwordInput.touched">
+          Password is required
+        </div>
+      </div>
+      
+      
+      <button 
+        type="submit" 
+        [disabled]="loginForm.invalid || isLoading"
+        class="login-button"
+      >
+        <span *ngIf="!isLoading">Login</span>
+        <div *ngIf="isLoading" class="spinner"></div>
+      </button>
+      
+    </form>
+    
+    <p class="switch-link">
+      Don't have an account? <a href="/signup">Sign up</a>
+    </p>
+    
+    <div class="alert" *ngIf="message" [class.alert-success]="message === 'Login successful!'" [class.alert-error]="message !== 'Login successful!'">
+      <i class="material-icons">{{ message === 'Login successful!' ? 'check_circle' : 'error' }}</i>
+      <span>{{ message }}</span>
     </div>
-    <button type="submit">Login</button>
-  </form>
-  <p class="message" *ngIf="message">{{ message }}</p>
+  </div>
 </div>

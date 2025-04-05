@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = 'https://mean-todo-backend.vercel.app/api'; // your working backend URL
+  // private apiUrl = 'http://localhost:3000/api'
 
   constructor(private http: HttpClient) {}
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TodoService, Todo } from '../../services/todo.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,7 +16,11 @@ export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
   newTodoTitle: string = '';
 
-  constructor(private todoService: TodoService) {}
+  constructor(
+    private todoService: TodoService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadTodos();
@@ -54,7 +60,6 @@ export class TodoListComponent implements OnInit {
     return (this.getCompletedCount() / this.todos.length) * 100;
   }
 
-  // Helper methods to avoid expressions in the template
   getCompletedCount(): number {
     return this.todos.filter(t => t.completed).length;
   }
@@ -65,5 +70,10 @@ export class TodoListComponent implements OnInit {
 
   getButtonText(todo: Todo): string {
     return todo.completed ? '↩️ Undo' : '✅ Done';
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
