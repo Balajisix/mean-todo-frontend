@@ -1,0 +1,38 @@
+<div class="todo-container">
+  <h2 class="title">Student Task Manager 🎯</h2>
+  
+  <div class="input-container">
+    <input [(ngModel)]="newTodoTitle" placeholder="Add a new task..." class="todo-input" (keyup.enter)="addTodo()" />
+    <button (click)="addTodo()" class="add-btn">➕ Add Task</button>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" [style.width.%]="getCompletionPercentage()"></div>
+  </div>
+  <div class="progress-info">
+    <span>{{ getCompletionPercentage() | number:'1.0-0' }}% Completed</span>
+    <span>{{ getCompletedCount() }}/{{ todos.length }} Tasks</span>
+  </div>
+
+  <!-- Empty state -->
+  <div *ngIf="todos.length === 0" class="empty-state">
+    <p>No tasks yet. Add your first task to get started!</p>
+  </div>
+
+  <!-- Todo List -->
+  <ul class="todo-list">
+    <li *ngFor="let todo of todos" class="todo-item" [class.completed-item]="todo.completed">
+      <span [ngClass]="{'completed': todo.completed}" (click)="toggleCompletion(todo)">
+        <i class="status-icon" [ngClass]="getStatusIconClass(todo)"></i>
+        {{ todo.title }}
+      </span>
+      <div class="btn-group">
+        <button class="done-btn" (click)="toggleCompletion(todo)">
+          {{ getButtonText(todo) }}
+        </button>
+        <button class="delete-btn" (click)="deleteTodo(todo)">🗑️ Delete</button>
+      </div>
+    </li>
+  </ul>
+</div>
