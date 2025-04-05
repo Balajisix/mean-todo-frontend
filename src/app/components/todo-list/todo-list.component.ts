@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
   newTodoTitle: string = '';
+  newTodoDeadline: string = ''; // store deadline as ISO string (from date input)
 
   constructor(
     private todoService: TodoService,
@@ -32,10 +33,16 @@ export class TodoListComponent implements OnInit {
 
   addTodo(): void {
     if (this.newTodoTitle.trim()) {
-      const newTodo: Todo = { title: this.newTodoTitle.trim(), completed: false };
+      // Build the new todo, include deadline if provided
+      const newTodo: Todo = {
+        title: this.newTodoTitle.trim(),
+        completed: false,
+        deadline: this.newTodoDeadline ? new Date(this.newTodoDeadline) : undefined
+      };
       this.todoService.addTodo(newTodo).subscribe((todo) => {
         this.todos.push(todo);
         this.newTodoTitle = '';
+        this.newTodoDeadline = ''; // reset deadline input
       });
     }
   }

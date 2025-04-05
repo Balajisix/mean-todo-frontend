@@ -199,6 +199,31 @@
   background-color: #d62e46;
 }
 
+/* Deadline Input Styling */
+.deadline-input {
+  padding: 10px;
+  border: 2px solid #e1e1e1;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.deadline-input:focus {
+  outline: none;
+  border-color: #6c5ce7;
+  box-shadow: 0 4px 12px rgba(108, 92, 231, 0.2);
+}
+
+/* Task Details Styling */
+.task-details {
+  font-size: 12px;
+  color: #777;
+  margin-top: 4px;
+  text-align: left;
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 650px) {
   .todo-container {

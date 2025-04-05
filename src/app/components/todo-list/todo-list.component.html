@@ -8,6 +8,8 @@
   
   <div class="input-container">
     <input [(ngModel)]="newTodoTitle" placeholder="Add a new task..." class="todo-input" (keyup.enter)="addTodo()" />
+    <!-- New Deadline Input -->
+    <input type="date" [(ngModel)]="newTodoDeadline" placeholder="Deadline" class="deadline-input" />
     <button (click)="addTodo()" class="add-btn">➕ Add Task</button>
   </div>
 
@@ -32,6 +34,10 @@
         <i class="status-icon" [ngClass]="getStatusIconClass(todo)"></i>
         {{ todo.title }}
       </span>
+      <div class="task-details">
+        <small>Added on: {{ todo.createdAt | date:'short' }}</small>
+        <small *ngIf="todo.deadline">Deadline: {{ todo.deadline | date:'shortDate' }}</small>
+      </div>
       <div class="btn-group">
         <button class="done-btn" (click)="toggleCompletion(todo)">
           {{ getButtonText(todo) }}

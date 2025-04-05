@@ -6,6 +6,9 @@ export interface Todo {
   _id?: string;
   title: string;
   completed: boolean;
+  deadline?: Date;       // optional deadline date
+  createdAt?: string;    // populated automatically by Mongoose
+  updatedAt?: string;
 }
 
 @Injectable({
