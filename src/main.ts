@@ -15,4 +15,15 @@ bootstrapApplication(AppComponent, {
           }),
   ]
 })
+.then(() => {
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('push-sw.js')
+      .then(registration => {
+        console.log('Push Service worked with scope: ', registration.scope);
+      })
+      .catch(error => {
+        console.error('Push Service Worker registration failed:', error);
+      });
+  }
+})
 .catch((err) => console.error(err));
