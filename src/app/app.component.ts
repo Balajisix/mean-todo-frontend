@@ -15,5 +15,6 @@ export class AppComponent {
 
   ngonInit(): void{
     this.pushService.subscribeToNotifications();
+    this.pushService.listenToNotifications();
   }
 }
