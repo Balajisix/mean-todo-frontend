@@ -71,13 +71,56 @@
   transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   cursor: pointer;
+  color: #4a4a4a;
   box-sizing: border-box;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236c5ce7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3e%3c/rect%3e%3cline x1='16' y1='2' x2='16' y2='6'%3e%3c/line%3e%3cline x1='8' y1='2' x2='8' y2='6'%3e%3c/line%3e%3cline x1='3' y1='10' x2='21' y2='10'%3e%3c/line%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+  padding-right: 40px;
 }
 
 .deadline-input:focus {
   outline: none;
   border-color: #6c5ce7;
   box-shadow: 0 4px 12px rgba(108, 92, 231, 0.2);
+}
+
+/* Fix placeholder text color for date inputs */
+.deadline-input::placeholder {
+  color: #777;
+  opacity: 1;
+}
+
+/* Fix for Safari and iOS */
+.deadline-input::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+/* Fix for Chrome */
+.deadline-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+/* Style for the date input when it has value */
+.deadline-input:not([value=""]) {
+  color: #333;
+  font-weight: 500;
 }
 
 .add-btn {
@@ -356,6 +399,25 @@
   
   .add-btn {
     width: auto;
+  }
+
+  .deadline-input {
+    min-height: 52px;
+    padding-left: 16px;
+    font-size: 15px;
+    color: #333 !important;
+  }
+  
+  /* Force showing placeholder text in mobile */
+  input[type="date"]::before {
+    content: attr(placeholder);
+    color: #777;
+    width: 100%;
+  }
+  
+  input[type="date"]:focus::before,
+  input[type="date"]:valid::before {
+    display: none;
   }
 }
 
