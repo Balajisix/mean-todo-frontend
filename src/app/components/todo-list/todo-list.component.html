@@ -9,7 +9,7 @@
   <div class="input-container">
     <input [(ngModel)]="newTodoTitle" placeholder="Add a new task..." class="todo-input" (keyup.enter)="addTodo()" />
     <!-- New Deadline Input -->
-    <input type="date" [(ngModel)]="newTodoDeadline" placeholder="Deadline" class="deadline-input" />
+    <input type="date" [(ngModel)]="newTodoDeadline" class="deadline-input" />
     <button (click)="addTodo()" class="add-btn">➕ Add Task</button>
   </div>
 
