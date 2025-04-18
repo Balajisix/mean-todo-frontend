@@ -36,19 +36,22 @@
 /* Input Section */
 .input-container {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 15px;
   margin-bottom: 30px;
-  padding: 5px;
+  padding: 5px 0;
+  width: 100%;
 }
 
 .todo-input {
-  flex: 2;
+  width: 100%;
   padding: 16px 20px;
   border-radius: 12px;
   border: 2px solid #e1e1e1;
   font-size: 16px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
 }
 
 .todo-input:focus {
@@ -59,7 +62,7 @@
 
 /* Deadline Input Styling */
 .deadline-input {
-  flex: 1;
+  width: 100%;
   padding: 14px 16px;
   border: 2px solid #e1e1e1;
   border-radius: 12px;
@@ -69,6 +72,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   color: #4a4a4a;
+  box-sizing: border-box;
 }
 
 .deadline-input:focus {
@@ -78,7 +82,8 @@
 }
 
 .add-btn {
-  padding: 12px 20px;
+  width: 100%;
+  padding: 14px 20px;
   border: none;
   background: linear-gradient(135deg, #6c5ce7, #8e7cf3);
   color: white;
@@ -92,6 +97,7 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
+  box-sizing: border-box;
 }
 
 .add-btn:hover {
@@ -331,5 +337,32 @@
   .btn-group {
     width: 100%;
     justify-content: space-between;
+  }
+}
+
+/* Responsive adjustments for larger screens */
+@media (min-width: 576px) {
+  .input-container {
+    flex-direction: row;
+    padding: 5px;
+  }
+  
+  .todo-input {
+    flex: 2;
+  }
+  
+  .deadline-input {
+    flex: 1;
+  }
+  
+  .add-btn {
+    width: auto;
+  }
+}
+
+/* Ensure container padding is appropriate for mobile */
+@media (max-width: 575px) {
+  .todo-container {
+    padding: 25px 15px;
   }
 }
