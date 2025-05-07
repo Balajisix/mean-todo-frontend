@@ -345,6 +345,20 @@
   box-shadow: 0 4px 10px rgba(235, 59, 90, 0.3);
 }
 
+.search-container {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 650px) {
   .todo-container {

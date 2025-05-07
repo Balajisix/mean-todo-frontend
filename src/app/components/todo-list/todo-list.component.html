@@ -1,19 +1,37 @@
 <div class="todo-container">
-  <!-- Logout Button -->
   <div class="logout-btn-container">
     <button (click)="logout()" class="logout-btn">Logout</button>
   </div>
 
   <h2 class="title">Student Task Manager 🎯</h2>
   
+  <!-- Add‑task inputs -->
   <div class="input-container">
-    <input [(ngModel)]="newTodoTitle" placeholder="Add a new task..." class="todo-input" (keyup.enter)="addTodo()" />
-    <!-- New Deadline Input -->
-    <input type="date" [(ngModel)]="newTodoDeadline" class="deadline-input" />
+    <input
+      [(ngModel)]="newTodoTitle"
+      placeholder="Add a new task..."
+      class="todo-input"
+      (keyup.enter)="addTodo()"
+    />
+    <input
+      type="date"
+      [(ngModel)]="newTodoDeadline"
+      class="deadline-input"
+    />
     <button (click)="addTodo()" class="add-btn">➕ Add Task</button>
   </div>
 
-  <!-- Progress Bar -->
+  <!-- Search box -->
+  <div class="search-container">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="🔍 Search tasks..."
+      class="search-input"
+    />
+  </div>
+
+  <!-- Progress bar -->
   <div class="progress-container">
     <div class="progress-bar" [style.width.%]="getCompletionPercentage()"></div>
   </div>
@@ -27,22 +45,33 @@
     <p>No tasks yet. Add your first task to get started!</p>
   </div>
 
-  <!-- Todo List -->
+  <!-- Task list -->
   <ul class="todo-list">
-    <li *ngFor="let todo of todos" class="todo-item" [class.completed-item]="todo.completed">
-      <span [ngClass]="{'completed': todo.completed}" (click)="toggleCompletion(todo)">
+    <li
+      *ngFor="let todo of filteredTodos"
+      class="todo-item"
+      [class.completed-item]="todo.completed"
+    >
+      <span
+        [ngClass]="{ 'completed': todo.completed }"
+        (click)="toggleCompletion(todo)"
+      >
         <i class="status-icon" [ngClass]="getStatusIconClass(todo)"></i>
         {{ todo.title }}
       </span>
       <div class="task-details">
         <small>Added on: {{ todo.createdAt | date:'short' }}</small>
-        <small *ngIf="todo.deadline">Deadline: {{ todo.deadline | date:'shortDate' }}</small>
+        <small *ngIf="todo.deadline">
+          Deadline: {{ todo.deadline | date:'shortDate' }}
+        </small>
       </div>
       <div class="btn-group">
         <button class="done-btn" (click)="toggleCompletion(todo)">
           {{ getButtonText(todo) }}
         </button>
-        <button class="delete-btn" (click)="deleteTodo(todo)">🗑️ Delete</button>
+        <button class="delete-btn" (click)="deleteTodo(todo)">
+          🗑️ Delete
+        </button>
       </div>
     </li>
   </ul>
