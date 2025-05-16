@@ -15,8 +15,8 @@ export interface Todo {
   providedIn: 'root'
 })
 export class TodoService {
-  private apiUrl = 'http://localhost:3000/api/todos';
-  // private apiUrl = 'https://mean-todo-backend.vercel.app/api/todos';
+  // private apiUrl = 'http://localhost:3000/api/todos';
+  private apiUrl = 'https://mean-todo-backend.vercel.app/api/todos';
 
   constructor(private http: HttpClient) { }
 

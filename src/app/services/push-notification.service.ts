@@ -8,7 +8,7 @@ import { SwPush } from '@angular/service-worker';
 export class PushNotificationService {
   // Replace with your actual public VAPID key
   readonly VAPID_PUBLIC_KEY = 'BP__0qNQEDL-86yjh-hSokPRqFs1KpUWK-AZQqRw02b6eYPaIK7E7-jZtdKmsBzmLPGA_xlciMroJfXpm8aeKH0';
-  readonly SUBSCRIBE_URL = 'http://localhost:3000/api/notifications/subscribe';
+  readonly SUBSCRIBE_URL = 'https://mean-todo-backend.vercel.app/api/notifications/subscribe';
 
   constructor(private swPush: SwPush, private http: HttpClient) {}
 
